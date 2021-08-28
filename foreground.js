@@ -99,6 +99,8 @@ function displaySums(rows, sums) {
 }
 
 function start() {
+    console.log('Calculating hours...');
+
     // Remove any existing summary
     $('.week-summary').remove();
     $('span.total-flex-month').remove();
@@ -111,6 +113,8 @@ function start() {
 
     // Display results of each week
     displaySums(rows, sums);
+
+    console.log('Calculation done!');
 }
 
 // setTimeout(start, 2000)
