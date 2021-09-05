@@ -1,7 +1,7 @@
 {
     "name": "Roughly Right Summarizer",
     "description": "Summarize hours of each week in Roughly Right",
-    "version": "0.1",
+    "version": "1.0",
     "manifest_version": 3,
     "background": {
         "service_worker": "background.js"
@@ -14,10 +14,6 @@
         }
     ],
     "permissions": [
-        "tabs",
-        "scripting",
-        "declarativeNetRequest",
-        "declarativeNetRequestFeedback",
         "webRequest"
     ]
 }
