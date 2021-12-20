@@ -39,6 +39,10 @@ function calcRowSums(rows) {
 }
 
 function displaySums(rows, sums) {
+    const isCorrectView = $('.timereport-calendar').hasClass('expanded');
+    if (!isCorrectView) {
+        return clearElements();
+    }
     let totalFlex = 0;
     for (const row in rows) {
         const elements = rows[row];
@@ -93,8 +97,10 @@ function displaySums(rows, sums) {
 
         lastElement.appendChild(rowSumDiv);
     }
-    $('span.month').append(
-        `<span class="total-flex-month"> (${getIntegerPrefix(totalFlex)}${totalFlex})</span>`
+    $('.card-header .form-row:last').append(
+        `<span class="total-flex-month" style="display: flex; align-items: center;"> (${getIntegerPrefix(
+            totalFlex
+        )}${totalFlex})</span>`
     );
 }
 
@@ -102,9 +108,7 @@ function start() {
     console.log('Calculating hours...');
 
     // Remove any existing summary
-    $('.week-summary').remove();
-    $('span.total-flex-month').remove();
-
+    clearElements();
     // Get all rows and days
     const rows = getRows();
 
@@ -115,6 +119,11 @@ function start() {
     displaySums(rows, sums);
 
     console.log('Calculation done!');
+}
+
+function clearElements() {
+    $('.week-summary').remove();
+    $('span.total-flex-month').remove();
 }
 
 // setTimeout(start, 2000)
