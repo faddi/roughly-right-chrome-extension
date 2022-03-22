@@ -5,6 +5,10 @@ function getIntegerPrefix(num) {
     return '';
 }
 
+function removeNonDigits(str) {
+    return str.replace(/[A-Za-z]/g, '');
+}
+
 function getRows() {
     const dateBoxes = document.querySelectorAll('.timeline li:not(.timeline-header)');
     const numOfRows = dateBoxes.length / 7;
@@ -26,7 +30,7 @@ function calcRowSums(rows) {
             const dayText = dayBox.querySelector('span.total:not(.ng-hide)');
             let dayTotal;
             try {
-                dayTotal = Number(dayText.innerText);
+                dayTotal = Number(removeNonDigits(dayText.innerText));
                 sum += dayTotal;
             } catch (error) {
                 // void
@@ -59,12 +63,12 @@ function displaySums(rows, sums) {
         const skippedDays = Array.from(elements).reduce((acc, curr, index) => {
             // Matches days to be skipped from expected hours of the week.
 
-            const dayVal = $(curr).find('span.total').text();
+            let dayVal = $(curr).find('span.total').text();
 
             if (
                 (curr.classList.contains('holiday') ||
                     curr.classList.contains('placeholderday') ||
-                    !dayVal) &&
+                    (!dayVal || dayVal === '-')) &&
                 index < 5
             ) {
                 acc++;
