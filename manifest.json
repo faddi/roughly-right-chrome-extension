@@ -1,19 +1,23 @@
 {
-    "name": "Roughly Right Summarizer",
-    "description": "Summarize hours of each week in Roughly Right",
-    "version": "2.0.0",
-    "manifest_version": 3,
-    "background": {
-        "service_worker": "background.js"
-    },
-    "host_permissions": ["https://roughlyright.com/*"],
-    "content_scripts": [
-        {
-            "matches": ["https://roughlyright.com/*"],
-            "js": ["./jquery.min.js", "./foreground.js"]
-        }
-    ],
-    "permissions": [
-        "webRequest"
-    ]
+  "name": "Roughly Right Summarizer",
+  "description": "Summarize hours of each week in Roughly Right",
+  "version": "2.0.1",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "https://roughlyright.com/*",
+    "https://app.roughlyright.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://roughlyright.com/*",
+        "https://app.roughlyright.com/*"
+      ],
+      "js": ["./jquery.min.js", "./foreground.js"]
+    }
+  ],
+  "permissions": ["webRequest"]
 }
